@@ -1,0 +1,122 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:800);
+/* Main styles */
+ .text {
+	 fill: none;
+	 stroke-width: 3;
+	 stroke-linejoin: round;
+	 stroke-dasharray: 70 330;
+	 stroke-dashoffset: 0;
+	 -webkit-animation: stroke 6s infinite linear;
+	 animation: stroke 6s infinite linear;
+}
+ .text:nth-child(5n + 1) {
+	 stroke: #f2385a;
+	 -webkit-animation-delay: -1.2s;
+	 animation-delay: -1.2s;
+}
+ .text:nth-child(5n + 2) {
+	 stroke: #f5a503;
+	 -webkit-animation-delay: -2.4s;
+	 animation-delay: -2.4s;
+}
+ .text:nth-child(5n + 3) {
+	 stroke: #e9f1df;
+	 -webkit-animation-delay: -3.6s;
+	 animation-delay: -3.6s;
+}
+ .text:nth-child(5n + 4) {
+	 stroke: #56d9cd;
+	 -webkit-animation-delay: -4.8s;
+	 animation-delay: -4.8s;
+}
+ .text:nth-child(5n + 5) {
+	 stroke: #3aa1bf;
+	 -webkit-animation-delay: -6s;
+	 animation-delay: -6s;
+}
+ @-webkit-keyframes stroke {
+	 100% {
+		 stroke-dashoffset: -400;
+	}
+}
+ @keyframes stroke {
+	 100% {
+		 stroke-dashoffset: -400;
+	}
+}
+
+body {
+	 background: #111;
+     /* background: #0e1a30; */
+	 /* background-size: 0.2em 100%; */
+	 font: 6em Open Sans, Impact;
+	 text-transform: uppercase;
+	 /* margin: 0; */
+}
+ svg {
+	 width: 100%;
+	 height: 100%;
+}
+ 
+@keyframes cresent {
+    0% {
+        transform: translate(-30px, 30px) scale(0.9);
+        box-shadow: none;
+   }
+    50% {
+        transform: translate(0px, 0px) scale(1.02);
+        box-shadow: 0 0 10px #f9f3f2, 0 0 80px 8px #c7938b;
+        background-color: #efdbd8;
+   }
+    100% {
+        transform: translate(30px, -30px) scale(0.9);
+        box-shadow: none;
+   }
+}
+
+
+.gcontainer {
+    position: absolute;
+    top: 45%;
+    left: 43%;
+    /* margin-left: -64.5px; */
+    /* margin-top: -85.5px; */
+  }
+  
+  .ghost {
+    animation: float 3s ease-out infinite;
+  }
+  
+  @keyframes float {
+    50% {
+       transform: translate(0, 20px);
+    }
+  }
+  .shadowFrame {
+    width: 380px;
+    margin-top: -35px;
+    margin-left: 10px;
+  }
+  .shadow {
+    animation: shrink 3s ease-out infinite;
+    transform-origin: center center;
+  }
+  
+  .shadow ellipse {
+    transform-origin: center center;
+  }
+
+  @keyframes shrink {
+    0% {
+      width: 90%;
+      margin: 0 5%;
+    }
+    50% {
+      width: 60%;
+      margin: 0 18%;
+    }
+    100% {
+      width: 90%;
+      margin: 0 5%;
+    }
+  }

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1 style="text-align: center;">Signup</h1>
+ 
+    <% if(typeof error != 'undefined') { %>
+
+        <h4><%= error %></h4>
+          <% } %>
+ 
+    <div class="form-container" style="text-align: center;">
+        <form action="/user/create" method="post">
+            <input type="text" id="name" name="username" placeholder="Enter Your Name" required>
+            <br>
+            <br>
+            <br>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            <br>
+            <br>
+            <br>
+            <input type="password" id="password" name="password" placeholder="Enter Your password" required>
+            <br>
+            <br>
+             <input type="password" id="cpassword" name="cpassword" placeholder="Confirm Your Password" required>
+             <br>
+             <br>
+
+
+            <input type="number" name="age" id="age" placeholder="enter your age" required>
+            <br>
+            <br>
+            <select id="genre" name="genre">
+                <option value="Action">Action</option>
+                <option value="Adventure">Adventure</option>
+                <option value="Animation">Animation</option>
+                <option value="Commedy">Comedy</option>
+                <option value="Crime">Crime</option>
+                <option value="Documentary">Documentary</option>
+                <option value="Fantasy">Fantasy</option>
+                <option value="Horror">Horror</option>
+                <option value="Film-Noir">Film-Noir</option>
+                <option value="War">War</option>
+                <option value=" Thriller"></option>
+                <option value="Romance">Romance</option>
+
+            </select>
+            <br>
+            <br>
+            <br>
+
+            <select id="profession" name="profession">
+                <option value="Student">Student</option>
+                <option value="IT Employee">IT Employee</option>
+                <option value="Home care taker">Home care taker</option>
+                <option value="Teacher">Teacher</option>
+                <option value="Finance">Finance</option>
+                <option value="Law">Law</option>
+                <option value="Self-Employed">Self-Employed</option>
+                <option value="Retired">Retired</option>
+            </select>
+            <br>
+            <br>
+            gender:-
+            <input type="radio" name="gender" value="male"> Male
+            <input type="radio" name="gender" value="female"> Female
+            <input type="radio" name="gender" value="other"> Other
+            <br>
+            <br>
+            <button id="signupbtn" type="submit">Submit</button>
+        </form>
+    </div>
+ 
+        
+<script>
+
+  
+      
+      document.getElementById("signupbtn").addEventListener('click',function(){
+        new Noty({
+              theme:"relax",
+              text:"Check Your Email for verification",
+              type:"success",
+              layout:"topRight",
+              timeout:5000
+           }).show();
+      
+      });
+    </script>    
+
+
+
+</body>
+</html>

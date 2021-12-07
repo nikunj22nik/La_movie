@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <h1>Please Verify Your Email</h1>
+
+    <div class="verification-conatiner">
+    
+    <% if(typeof msg !='undefined'){ %>
+
+<h1><%=  msg %></h1>
+
+
+    <% } %>
+        <form action="/user/verify" method="post" >
+        <input type="text" id="verification-otp" name="otp" placeholder="Enter Otp" >
+        <button type="submit">Submit</button>
+        </form>
+</div>
+</body>
+</html>

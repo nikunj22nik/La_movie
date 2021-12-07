@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Welcome to login page</h2>
+    <% if(typeof error !='undefined'){%>
+        
+         
+          <h3><%= error %></h3> 
+        </div>
+           <% } %>
+
+
+    <% if(typeof msg !='undefined'){ %>
+
+<h5><%=  msg %></h5>
+
+      <% } %>
+
+<form action="/user/loginverify" method="post">
+
+    <input type="email" name="email" placeholder="Enter your email" style="width:400px; height:25px;">
+    <br>
+    <br>
+    <input type="password" name="password" placeholder="Enter Your Password" style="width:400px; height:25px;">
+    <br>
+    <br>
+    <button type="submit">Submit</button>
+
+</form>
+
+
+<% if(flash.error&& flash.error.length >0) { %>
+  <h1>Invalid Credentials</h1>
+  <% } %> 
+
+
+</body>
+</html>
