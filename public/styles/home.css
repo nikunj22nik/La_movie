@@ -53,9 +53,10 @@ body {
 	 text-transform: uppercase;
 	 /* margin: 0; */
 }
- svg {
+ .anim {
 	 width: 100%;
 	 height: 100%;
+   margin-left: -18%;
 }
  
 @keyframes cresent {
@@ -78,13 +79,15 @@ body {
 .gcontainer {
     position: absolute;
     top: 45%;
-    left: 43%;
+    left: 40%;
     /* margin-left: -64.5px; */
     /* margin-top: -85.5px; */
   }
   
   .ghost {
     animation: float 3s ease-out infinite;
+    margin-left: 30%;
+    margin-bottom: 5%;
   }
   
   @keyframes float {
@@ -93,9 +96,9 @@ body {
     }
   }
   .shadowFrame {
-    width: 380px;
-    margin-top: -35px;
-    margin-left: 10px;
+    width: 200px;
+    margin-top: -60px;
+    margin-left: 18%;
   }
   .shadow {
     animation: shrink 3s ease-out infinite;
