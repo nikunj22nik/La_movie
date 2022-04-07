@@ -1,51 +1,615 @@
-<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>La Moovi'e</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta2/dist/css/bootstrap-select.min.css">
-    
-</head>
-<body>
-            <div class="container" style="margin-top: 3%;">
-            <div class="row">
-                <div class="col">
-                    <div class="alert alert-info" role="alert" style="text-align: center;">
-                    <h1>La' Moovie' </h1>
-                    </div>
+   <title>Movie Design</title>
+	<style>
+    * {
+  margin: 0;
+}
 
+body {
+  font-family: "Roboto", sans-serif;
+}
+
+.navbar {
+  width: 100%;
+  height: 50px;
+  background-color: black;
+  position: sticky;
+  top: 0;
+}
+
+.navbar-container {
+  display: flex;
+  align-items: center;
+  padding: 0 50px;
+  height: 100%;
+  color: white;
+  font-family: "Sen", sans-serif;
+}
+
+.logo-container {
+  flex: 1;
+}
+
+.logo {
+  font-size: 30px;
+  color: #4dbf00;
+}
+
+.menu-container {
+  flex: 6;
+}
+
+.menu-list {
+  display: flex;
+  list-style: none;
+}
+
+.menu-list-item {
+  margin-right: 30px;
+}
+
+.menu-list-item.active {
+  font-weight: bold;
+}
+.profile-container {
+  flex: 2;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.profile-text-container {
+  margin: 0 20px;
+}
+
+.profile-picture {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.toggle {
+  width: 40px;
+  height: 20px;
+  background-color: white;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  position: relative;
+}
+
+.toggle-icon {
+  color: goldenrod;
+}
+
+.toggle-ball {
+  width: 18px;
+  height: 18px;
+  background-color: black;
+  position: absolute;
+  right: 1px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 1s ease all;
+}
+
+.sidebar {
+  width: 50px;
+  height: 100%;
+  background-color: black;
+  position: fixed;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 60px;
+}
+
+.left-menu-icon {
+  color: white;
+  font-size: 20px;
+  margin-bottom: 40px;
+}
+
+.container {
+  background-color: #151515;
+  min-height: calc(100vh - 50px);
+  color: white;
+}
+
+.content-container {
+  margin-left: 50px;
+}
+
+.featured-content {
+  height: 50vh;
+  padding: 50px;
+}
+
+.featured-title {
+  width: 200px;
+}
+
+.featured-desc {
+  width: 500px;
+  color: lightgray;
+  margin: 30px 0;
+}
+
+.featured-button {
+  background-color: #4dbf00;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  font-weight: bold;
+}
+
+.movie-list-container {
+  padding: 0 20px;
+}
+
+.movie-list-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.movie-list {
+  display: flex;
+  align-items: center;
+  height: 300px;
+  transform: translateX(0);
+  transition: all 1s ease-in-out;
+}
+
+.movie-list-item {
+  margin-right: 30px;
+  position: relative;
+}
+
+.movie-list-item:hover .movie-list-item-img {
+  transform: scale(1.2);
+  margin: 0 30px;
+  opacity: 0.5;
+}
+
+.movie-list-item:hover .movie-list-item-title,
+.movie-list-item:hover .movie-list-item-desc,
+.movie-list-item:hover .movie-list-item-button {
+  opacity: 1;
+}
+
+.movie-list-item-img {
+  transition: all 1s ease-in-out;
+  width: 270px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+.movie-list-item-title {
+  background-color: #333;
+  padding: 0 10px;
+  font-size: 32px;
+  font-weight: bold;
+  position: absolute;
+  top: 10%;
+  left: 50px;
+  opacity: 0;
+  transition: 1s all ease-in-out;
+}
+
+.movie-list-item-desc {
+  background-color: #333;
+  padding: 10px;
+  font-size: 14px;
+  position: absolute;
+  top: 30%;
+  left: 50px;
+  width: 230px;
+  opacity: 0;
+  transition: 1s all ease-in-out;
+}
+
+.movie-list-item-button {
+  padding: 10px;
+  background-color: #4dbf00;
+  color: white;
+  border-radius: 10px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  bottom: 20px;
+  left: 50px;
+  opacity: 0;
+  transition: 1s all ease-in-out;
+}
+
+.arrow {
+  font-size: 120px;
+  position: absolute;
+  top: 90px;
+  right: 0;
+  color: lightgray;
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+.container.active {
+  background-color: white;
+}
+
+.movie-list-title.active {
+  color: black;
+}
+
+.navbar-container.active {
+  background-color: white;
+
+  color: black;
+}
+
+.sidebar.active{
+    background-color: white;
+}
+
+.left-menu-icon.active{
+    color: black;
+}
+
+.toggle.active{
+    background-color: black;
+}
+
+.toggle-ball.active{
+    background-color: white;
+    transform: translateX(-20px);
+}
+
+@media only screen and (max-width: 940px){
+    .menu-container{
+        display: none;
+    }
+}
+  </style>
+   
+
+
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="navbar-container">
+            <div class="logo-container">
+                <h1 class="logo">LA_MOVIE</h1>
+            </div>
+            <div class="menu-container">
+                <ul class="menu-list">
+                    <li class="menu-list-item active">Home</li>
+                    <li class="menu-list-item">Movies</li>
+                    <li class="menu-list-item">Series</li>
+                    <li class="menu-list-item">Popular</li>
+                    <li class="menu-list-item">Trends</li>
+
+                </ul>
+            </div>
+            <div class="profile-container">
+                <img class="profile-picture" src="https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8c2lsaG91ZXR0ZXxlbnwwfHwwfHw%3D&w=1000&q=80" alt="">
+                <div class="profile-text-container">
+                    <span class="profile-text">Profile</span>
+                    <i class="fas fa-caret-down"></i>
                 </div>
-                </div>
-                <div class="row">
-                <div class="col-sm-6">
-                    <div class="img">
-                    <img src="https://image.freepik.com/free-vector/film-rolls-concept-illustration_114360-6784.jpg"
-                        style="width: auto;" alt="">
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="contianer">
-                        <div class="row">
-                            <div class="col-sm-10" style="margin: 14% 5%;">
-                                <br><br>
-                                <br><br>
-                                <div class="alert alert-danger" role="alert" style="text-align: center;">
-                                    <h1>Welcome to the Home </h1>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="toggle">
+                    <i class="fas fa-moon toggle-icon"></i>
+                    <i class="fas fa-sun toggle-icon"></i>
+                    <div class="toggle-ball"></div>
                 </div>
             </div>
         </div>
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" ></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta2/dist/js/bootstrap-select.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta2/dist/js/i18n/defaults-*.min.js"></script>
+    </div>
+    <div class="sidebar">
+        <i class="left-menu-icon fas fa-search"></i>
+        <i class="left-menu-icon fas fa-home"></i>
+        <i class="left-menu-icon fas fa-users"></i>
+        <i class="left-menu-icon fas fa-bookmark"></i>
+        <i class="left-menu-icon fas fa-tv"></i>
+        <i class="left-menu-icon fas fa-hourglass-start"></i>
+        <i class="left-menu-icon fas fa-shopping-cart"></i>
+    </div>
+    <div class="container">
+        <div class="content-container">
+            <div class="featured-content"
+                style="background: linear-gradient(to bottom, rgba(0,0,0,0), #151515), url('img/f-1.jpg');">
+                <img class="featured-title" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRH_s11214cj0Z8H_o9SkPsIArI8tsF4SIQZg&usqp=CAU" alt="">
+                <p class="featured-desc">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iusto illo dolor
+                    deserunt nam assumenda ipsa eligendi dolore, ipsum id fugiat quo enim impedit, laboriosam omnis
+                    minima voluptatibus incidunt. Accusamus, provident.</p>
+                <button class="featured-button">Star</button>
+            </div>
+            <div class="movie-list-container">
+                <h1 class="movie-list-title">NEW RELEASES</h1>
+                <div class="movie-list-wrapper">
+                    <div class="movie-list">
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="https://images.unsplash.com/photo-1580130857334-2f9b6d01d99d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTd8fG1vdmllJTIwcG9zdGVyfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60" alt="">
+                            <span class="movie-list-item-title">Her</span>
+                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
+                                hic fugit similique accusantium.</p>
+                            <button class="movie-list-item-button">Star</button>
+                        </div>
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="https://media.istockphoto.com/photos/woman-in-city-picture-id1283093471?b=1&k=20&m=1283093471&s=170667a&w=0&h=gHDN-k6EbNFuKmRCBLvU490KaxkQ48UlvOLQyLRYF2A=" alt="">
+                            <span class="movie-list-item-title">Star Wars</span>
+                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
+                                hic fugit similique accusantium.</p>
+                            <button class="movie-list-item-button">Star</button>
+                        </div>
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSE7aiPdvMvY0D0eRT2PJckDLfRfNBPKzng1g&usqp=CAU" alt="">
+                            <span class="movie-list-item-title">Storm</span>
+                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
+                                hic fugit similique accusantium.</p>
+                            <button class="movie-list-item-button">Star</button>
+                        </div>
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBf5CVqpgFdswT-wUSFNG2ILefI4Ji63Qhqw&usqp=CAU" alt="">
+                            <span class="movie-list-item-title">1917</span>
+                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
+                                hic fugit similique accusantium.</p>
+                            <button class="movie-list-item-button">Star</button>
+                        </div>
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0BYfmdnHo49T_y_ZjqYQ52G-XJX6_P3e86A&usqp=CAU" alt="">
+                            <span class="movie-list-item-title">Avengers</span>
+                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
+                                hic fugit similique accusantium.</p>
+                            <button class="movie-list-item-button">Star</button>
+                        </div>
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbMv7Kh19vC0XmtyW6EzehwXYstLHpGmzkbA&usqp=CAU" alt="">
+                            <span class="movie-list-item-title">Her</span>
+                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
+                                hic fugit similique accusantium.</p>
+                            <button class="movie-list-item-button">Star</button>
+                        </div>
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlsp-6RvbpD580OZn10uJ2yc73Yn1tH9CdBg&usqp=CAU" alt="">
+                            <span class="movie-list-item-title">Her</span>
+                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
+                                hic fugit similique accusantium.</p>
+                            <button class="movie-list-item-button">Star</button>
+                        </div>
+                    </div>
+                    <i class="fas fa-chevron-right arrow"></i>
+                </div>
+            </div>
+            <div class="movie-list-container">
+                <h1 class="movie-list-title">NEW RELEASES</h1>
+                <div class="movie-list-wrapper">
+                    <div class="movie-list">
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOtY88bIxKzkDNwxsLXceotRv6D5MyiqUfeA&usqp=CAU" alt="">
+                            <span class="movie-list-item-title">Her</span>
+                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
+                                hic fugit similique accusantium.</p>
+                            <button class="movie-list-item-button">Star</button>
+                        </div>
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwiWbj8r4EpMQ66yVdV0QF95x6mn5VEEbsJQ&usqp=CAU" alt="">
+                            <span class="movie-list-item-title">Her</span>
+                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
+                                hic fugit similique accusantium.</p>
+                            <button class="movie-list-item-button">Star</button>
+                        </div>
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="https://images.unsplash.com/photo-1611419010196-a360856fc42f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8bW92aWUlMjBwb3N0ZXJ8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60" alt="">
+                            <span class="movie-list-item-title">Her</span>
+                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
+                                hic fugit similique accusantium.</p>
+                            <button class="movie-list-item-button">Star</button>
+                        </div>
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReELEQ-I2_JPFMYvdnt-xh0_EAUHSFF_QBYg&usqp=CAU" alt="">
+                            <span class="movie-list-item-title">Her</span>
+                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
+                                hic fugit similique accusantium.</p>
+                            <button class="movie-list-item-button">Star</button>
+                        </div>
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfDMvaJysZaK768ZbBXDsxrfLNF4MBkOCZRA&usqp=CAU" alt="">
+                            <span class="movie-list-item-title">Her</span>
+                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
+                                hic fugit similique accusantium.</p>
+                            <button class="movie-list-item-button">Star</button>
+                        </div>
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfDMvaJysZaK768ZbBXDsxrfLNF4MBkOCZRA&usqp=CAU" alt="">
+                            <span class="movie-list-item-title">Her</span>
+                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
+                                hic fugit similique accusantium.</p>
+                            <button class="movie-list-item-button">Star</button>
+                        </div>
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfDMvaJysZaK768ZbBXDsxrfLNF4MBkOCZRA&usqp=CAU" alt="">
+                            <span class="movie-list-item-title">Her</span>
+                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
+                                hic fugit similique accusantium.</p>
+                            <button class="movie-list-item-button">Watch</button>
+                        </div>
+                    </div>
+                    <i class="fas fa-chevron-right arrow"></i>
+                </div>
+            </div>
+            <div class="featured-content"
+                style="background: linear-gradient(to bottom, rgba(0,0,0,0), #151515), url('img/f-2.jpg');">
+                <img class="featured-title" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRH_s11214cj0Z8H_o9SkPsIArI8tsF4SIQZg&usqp=CAU" alt="">
+                <p class="featured-desc">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iusto illo dolor
+                    deserunt nam assumenda ipsa eligendi dolore, ipsum id fugiat quo enim impedit, laboriosam omnis
+                    minima voluptatibus incidunt. Accusamus, provident.</p>
+                <button class="featured-button">Star</button>
+            </div>
+            <div class="movie-list-container">
+                <h1 class="movie-list-title">NEW RELEASES</h1>
+                <div class="movie-list-wrapper">
+                    <div class="movie-list">
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfDMvaJysZaK768ZbBXDsxrfLNF4MBkOCZRA&usqp=CAU" alt="">
+                            <span class="movie-list-item-title">Her</span>
+                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
+                                hic fugit similique accusantium.</p>
+                            <button class="movie-list-item-button">Watch</button>
+                        </div>
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfDMvaJysZaK768ZbBXDsxrfLNF4MBkOCZRA&usqp=CAU" alt="">
+                            <span class="movie-list-item-title">Her</span>
+                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
+                                hic fugit similique accusantium.</p>
+                            <button class="movie-list-item-button">Watch</button>
+                        </div>
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfDMvaJysZaK768ZbBXDsxrfLNF4MBkOCZRA&usqp=CAU" alt="">
+                            <span class="movie-list-item-title">Her</span>
+                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
+                                hic fugit similique accusantium.</p>
+                            <button class="movie-list-item-button">Watch</button>
+                        </div>
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgQFu9ruL8uo3e-enOdxZuGVusloMFQkGU5A&usqp=CAU" alt="">
+                            <span class="movie-list-item-title">Her</span>
+                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
+                                hic fugit similique accusantium.</p>
+                            <button class="movie-list-item-button">Watch</button>
+                        </div>
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTG24WxAtkEash4QlUrt9MfphWJCYoB15IpRQ&usqp=CAU" alt="">
+                            <span class="movie-list-item-title">Her</span>
+                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
+                                hic fugit similique accusantium.</p>
+                            <button class="movie-list-item-button">Watch</button>
+                        </div>
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTG24WxAtkEash4QlUrt9MfphWJCYoB15IpRQ&usqp=CAU" alt="">
+                            <span class="movie-list-item-title">Her</span>
+                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
+                                hic fugit similique accusantium.</p>
+                            <button class="movie-list-item-button">Watch</button>
+                        </div>
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTG24WxAtkEash4QlUrt9MfphWJCYoB15IpRQ&usqp=CAU" alt="">
+                            <span class="movie-list-item-title">Her</span>
+                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
+                                hic fugit similique accusantium.</p>
+                            <button class="movie-list-item-button">Watch</button>
+                        </div>
+                    </div>
+                    <i class="fas fa-chevron-right arrow"></i>
+                </div>
+            </div>
+            <div class="movie-list-container">
+                <h1 class="movie-list-title">NEW RELEASES</h1>
+                <div class="movie-list-wrapper">
+                    <div class="movie-list">
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQDKP3EZGOK_b_vYjXP2eidouVe6Zgz-qKDg&usqp=CAU" alt="">
+                            <span class="movie-list-item-title">Her</span>
+                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
+                                hic fugit similique accusantium.</p>
+                            <button class="movie-list-item-button">Watch</button>
+                        </div>
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQDKP3EZGOK_b_vYjXP2eidouVe6Zgz-qKDg&usqp=CAU" alt="">
+                            <span class="movie-list-item-title">Her</span>
+                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
+                                hic fugit similique accusantium.</p>
+                            <button class="movie-list-item-button">Watch</button>
+                        </div>
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQDKP3EZGOK_b_vYjXP2eidouVe6Zgz-qKDg&usqp=CAU" alt="">
+                            <span class="movie-list-item-title">Her</span>
+                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
+                                hic fugit similique accusantium.</p>
+                            <button class="movie-list-item-button">Watch</button>
+                        </div>
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQDKP3EZGOK_b_vYjXP2eidouVe6Zgz-qKDg&usqp=CAU" alt="">
+                            <span class="movie-list-item-title">Her</span>
+                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
+                                hic fugit similique accusantium.</p>
+                            <button class="movie-list-item-button">Watch</button>
+                        </div>
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTG24WxAtkEash4QlUrt9MfphWJCYoB15IpRQ&usqp=CAU" alt="">
+                            <span class="movie-list-item-title">Her</span>
+                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
+                                hic fugit similique accusantium.</p>
+                            <button class="movie-list-item-button">Watch</button>
+                        </div>
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTG24WxAtkEash4QlUrt9MfphWJCYoB15IpRQ&usqp=CAU" alt="">
+                            <span class="movie-list-item-title">Her</span>
+                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
+                                hic fugit similique accusantium.</p>
+                            <button class="movie-list-item-button">Watch</button>
+                        </div>
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTG24WxAtkEash4QlUrt9MfphWJCYoB15IpRQ&usqp=CAU" alt="">
+                            <span class="movie-list-item-title">Her</span>
+                            <p class="movie-list-item-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. At
+                                hic fugit similique accusantium.</p>
+                            <button class="movie-list-item-button">Watch</button>
+                        </div>
+                    </div>
+                    <i class="fas fa-chevron-right arrow"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+const arrows = document.querySelectorAll(".arrow");
+const movieLists = document.querySelectorAll(".movie-list");
+
+arrows.forEach((arrow, i) => {
+  const itemNumber = movieLists[i].querySelectorAll("img").length;
+  let clickCounter = 0;
+  arrow.addEventListener("click", () => {
+    const ratio = Math.floor(window.innerWidth / 270);
+    clickCounter++;
+    if (itemNumber - (4 + clickCounter) + (4 - ratio) >= 0) {
+      movieLists[i].style.transform = `translateX(${
+        movieLists[i].computedStyleMap().get("transform")[0].x.value - 300
+      }px)`;
+    } else {
+      movieLists[i].style.transform = "translateX(0)";
+      clickCounter = 0;
+    }
+  });
+
+  console.log(Math.floor(window.innerWidth / 270));
+});
+
+//TOGGLE
+
+const ball = document.querySelector(".toggle-ball");
+const items = document.querySelectorAll(
+  ".container,.movie-list-title,.navbar-container,.sidebar,.left-menu-icon,.toggle"
+);
+
+ball.addEventListener("click", () => {
+  items.forEach((item) => {
+    item.classList.toggle("active");
+  });
+  ball.classList.toggle("active");
+});
+    </script>
 </body>
+
 </html>

@@ -8,7 +8,6 @@ router.get('/home', (req,res)=>{
 
 
 //all user related routes
-
 router.use('/user',require("./user"));
 router.use('/movie',require("./movie"));
 
